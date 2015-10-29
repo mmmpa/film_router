@@ -20,4 +20,4 @@ URIと関数を登録し、URIで関数を呼び出す。
 ## Execute
 
     router.execute('/user')   # => 'index'
-    router.execute('/user/1') # => 'user 1'
+    router.execute('/user/1') # => 'id 1'
