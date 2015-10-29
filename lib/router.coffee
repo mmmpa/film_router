@@ -9,17 +9,16 @@ module.exports = class Router
     @_normalized = {}
 
   #
-  # URLと関数のセットを登録する
+  # URLでルートを呼び出す
   #
   # = Options
   #
   # - url URL
-  # - app 関数。引数にはplaceholderから得られた変数が入る。
   #
   # = Examples
   #
-  #   router.execute('/user')   # => 'index'
-  #   router.execute('/user/1') # => 'user 1'
+  #   router.add('/user', ()-> 'index')
+  #   router.add('/user/:id', (params)-> "id #{params.id}")
   #
   add: (url, app)->
     return false if @_find(url)
@@ -37,16 +36,17 @@ module.exports = class Router
     @_mapped[normalized[0]] = true
 
   #
-  # URLでルートを呼び出す
+  # URLと関数のセットを登録する
   #
   # = Options
   #
   # - url URL
+  # - app 関数。引数にはplaceholderから得られた変数が入る。
   #
   # = Examples
   #
-  #   router.add('/user', ()-> 'index')
-  #   router.add('/user/:id', (params)-> "id #{params.id}")
+  #   router.execute('/user')   # => 'index'
+  #   router.execute('/user/1') # => 'user 1'
   #
   execute: (url) ->
     now = @_map
